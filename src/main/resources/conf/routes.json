@@ -1,0 +1,9 @@
+[
+	{
+		"uri": "/",
+		"controller": "Home",
+		"action": "show",
+		"permission": "guest",
+		"token": false
+	}
+]
