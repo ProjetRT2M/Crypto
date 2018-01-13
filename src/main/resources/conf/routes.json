@@ -3,7 +3,21 @@
 		"uri": "/",
 		"controller": "Home",
 		"action": "show",
+		"permission": "all",
+		"token": false
+	},
+	{
+		"uri": "/login",
+		"controller": "Authentication",
+		"action": "login",
 		"permission": "guest",
 		"token": false
+	},
+	{
+		"uri": "/logout",
+		"controller": "Authentication",
+		"action": "logout",
+		"permission": "member",
+		"token": true
 	}
 ]
