@@ -13,7 +13,7 @@ import web.util.Util;
 
 public class Authentication extends Controller {
 	public void login() {
-		if (req.isPost() && req.contains("login", "password")) {
+		if (req.isPost() && req.get("formId").equals("loginForm")) {
 			try {
 				User user = new SelectQuery<>(User.class)
 					.addCondition("login", "=", req.get("login"))
@@ -28,12 +28,12 @@ public class Authentication extends Controller {
 			}
 		}
 
-		Input loginInp = new Input("text", "login", t.t("login"));
-		Input passwordInp = new Input("password", "password", t.t("password"));
+		Input loginIpt = new Input("text", "login", t.t("login"));
+		Input passwordIpt = new Input("password", "password", t.t("password"));
 
-		Form form = new Form("post", "");
-		form.insert(loginInp.toString(), "p");
-		form.insert(passwordInp.toString(), "p");
+		Form form = new Form("post", "", "loginForm");
+		form.insert(loginIpt.toString(), "p");
+		form.insert(passwordIpt.toString(), "p");
 		form.addSubmitButton(t.t("ok"));
 
 		View view = new View("login")

@@ -17,6 +17,7 @@
 				<li><a href="{{ u.uri("/") }}">{{ t.t("menu.home") }}</a></li>
 
 				{% if u.access("member") %}
+					<li><a href="{{ u.uri("/settings") }}">{{ t.t("menu.settings") }}</a></li>
 					<li><a href="{{ u.uri("/logout?tk=") + u.getToken() }}">{{ t.t("menu.logout") }}</a></li>
 				{% else %}
 					<li><a href="{{ u.uri("/login") }}">{{ t.t("menu.login") }}</a></li>
