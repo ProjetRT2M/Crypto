@@ -23,6 +23,7 @@ public class User extends Entity {
 	private String ipAddress;
 	private String email;
 	private String apiKey;
+	private String apiSecret;
 
 	public String getLogin() {
 		return login;
@@ -50,6 +51,10 @@ public class User extends Entity {
 
 	public String getApiKey() {
 		return apiKey != null ? apiKey : "";
+	}
+
+	public String getApiSecret() {
+		return apiSecret != null ? apiSecret : "";
 	}
 
 	public void setLogin(String login) throws EntityException {
@@ -108,6 +113,14 @@ public class User extends Entity {
 		}
 	}
 
+	public void setApiSecret(String apiSecret) {
+		if (apiSecret == null || apiSecret.isEmpty()) {
+			this.apiSecret = null;
+		} else {
+			this.apiSecret = apiSecret;
+		}
+	}
+
 	@Override
 	public void save() {
 		if (id == 0) {
@@ -122,6 +135,7 @@ public class User extends Entity {
 		dataToSave.put("ipAddress", ipAddress);
 		dataToSave.put("email", email);
 		dataToSave.put("apiKey", apiKey);
+		dataToSave.put("apiSecret", apiSecret);
 		super.save();
 	}
 
@@ -135,5 +149,6 @@ public class User extends Entity {
 		ipAddress = result.getString("ipAddress");
 		email = result.getString("email");
 		apiKey = result.getString("apiKey");
+		apiSecret = result.getString("apiSecret");
 	}
 }

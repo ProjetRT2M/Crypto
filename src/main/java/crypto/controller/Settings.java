@@ -49,10 +49,13 @@ public class Settings extends Controller {
 		emailIpt.addAttr("value", user.getEmail());
 		Input apiKeyIpt = new Input("text", "apiKey", "Bittrex API Key");
 		apiKeyIpt.addAttr("value", user.getApiKey());
+		Input apiSecretIpt = new Input("text", "apiSecret", "Bittrex API Secret");
+		apiSecretIpt.addAttr("value", user.getApiSecret());
 
 		Form form = new Form("post", "", "settingsForm");
 		form.insert(emailIpt.toString(), "p");
 		form.insert(apiKeyIpt.toString(), "p");
+		form.insert(apiSecretIpt.toString(), "p");
 		form.addSubmitButton(t.t("ok"));
 
 		return form;
@@ -62,6 +65,7 @@ public class Settings extends Controller {
 		try {
 			user.setEmail(req.get("email"));
 			user.setApiKey(req.get("apiKey"));
+			user.setApiSecret(req.get("apiKey"));
 			user.save();
 			page.addMessage(Message.SUCCESS, t.t("settings.saved"));
 		} catch (EntityException e) {
