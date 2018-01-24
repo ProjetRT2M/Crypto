@@ -9,4 +9,10 @@ public class Home extends Controller {
 		page.setTitle(t.t("menu.home"));
 		page.setView(view);
 	}
+
+	public void showHelp() {
+		View view = new View("help");
+		page.setTitle(t.t("menu.help"));
+		page.setView(view);
+	}
 }

@@ -22,6 +22,8 @@
 				{% else %}
 					<li><a href="{{ u.uri("/login") }}">{{ t.t("menu.login") }}</a></li>
 				{% endif %}
+
+				<li><a href="{{ u.uri("/help") }}">{{ t.t("menu.help") }}</a></li>
 			</ul>
 		</nav>
 

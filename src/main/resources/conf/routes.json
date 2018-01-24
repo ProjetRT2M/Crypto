@@ -7,6 +7,13 @@
 		"token": false
 	},
 	{
+		"uri": "/help",
+		"controller": "Home",
+		"action": "showHelp",
+		"permission": "all",
+		"token": false
+	},
+	{
 		"uri": "/login",
 		"controller": "Authentication",
 		"action": "login",
