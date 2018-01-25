@@ -1,5 +1,7 @@
 $(document).ready(function () {
-	$("select.js-select2").select2();
+	$("select.js-select2").select2({
+		width: 'resolve'
+	});
 });
 
 function getParam(name, url) {

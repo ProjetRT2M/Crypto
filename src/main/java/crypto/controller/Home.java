@@ -14,8 +14,9 @@ import web.html.Select;
 
 public class Home extends Controller {
 	public void show() {
-		Select select = new Select("currency", t.t("currency"));
-		select.addAttr("class", "js-select2 w50");
+		Select currencySlt = new Select("currency", t.t("currency"));
+		currencySlt.addAttr("class", "js-select2 w40");
+		currencySlt.setDefaultValue("BTC");
 
 		try {
 			String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
@@ -23,14 +24,20 @@ public class Home extends Controller {
 
 			for (int i = 0; i < currencies.length(); i++) {
 				JSONObject jo = currencies.getJSONObject(i);
-				select.addOption(jo.getString("Currency"), jo.getString("CurrencyLong"));
+				currencySlt.addOption(jo.getString("Currency"), jo.getString("CurrencyLong"));
 			}
 		} catch (IOException | JSONException e) {
 			page.addMessage(new Message(Message.WARNING, t.t("currency.list.error")));
 		}
 
+		Select conversionSlt = new Select("conversion");
+		conversionSlt.addAttr("class", "js-select2 w40");
+		conversionSlt.setDefaultValue("USD");
+		conversionSlt.addOption("USD", "Dollar");
+		conversionSlt.addOption("BTC", "Bitcoin");
+
 		Form form = new Form();
-		form.insert(select.toString(), "p");
+		form.insert(currencySlt.toString() + conversionSlt.toString(), "p");
 
 		View view = new View("home")
 			.add("currencyForm", form);
