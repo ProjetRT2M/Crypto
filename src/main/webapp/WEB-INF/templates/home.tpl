@@ -2,6 +2,7 @@
 	<h2>{{ t.t("menu.home") }}</h2>
 	<article>
 		<div id="trading-view-widget">
+			{{ currencyForm | raw }}
 			<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 			<script type="text/javascript">
 				new TradingView.widget({
@@ -22,3 +23,5 @@
 		</div>
 	</article>
 </section>
+
+<script type="text/javascript" src="{{ u.uri("/public/js/home.js") }}"></script>
