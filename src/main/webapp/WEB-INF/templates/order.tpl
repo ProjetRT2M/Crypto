@@ -34,6 +34,8 @@
 					});
 				</script>
 			</div>
+
+			{{ orderForm | raw }}
 		</div>
 
 		<span class="clear-float"></span>
