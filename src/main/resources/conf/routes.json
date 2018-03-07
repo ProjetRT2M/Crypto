@@ -33,5 +33,12 @@
 		"action": "show",
 		"permission": "member",
 		"token": false
+	},
+	{
+		"uri": "/order",
+		"controller": "Order",
+		"action": "show",
+		"permission": "member",
+		"token": false
 	}
 ]

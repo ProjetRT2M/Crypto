@@ -1,6 +1,43 @@
 @import "core.less";
 
-#trading-view-widget {
+.trading-view-widget {
 	height: 600px;
 	margin-top: 30px;
+}
+
+.order-page {
+	.order-menu {
+		width: 20%;
+		float: left;
+
+		.currency-list {
+			max-height: 600px;
+			overflow: scroll;
+			text-align: center;
+			margin-top: 20px;
+			p.selected {background: lightgray;}
+
+			p {
+				border-bottom: 1px solid @nav-bg;
+				cursor: pointer;
+				margin: auto;
+				padding-top: 8px;
+				padding-bottom: 8px;
+			}
+
+			p:hover {
+				.currency-short {display: none;}
+				.currency-long {display: initial;}
+			}
+		}
+	}
+
+	.order-block {
+		margin-left: 22%;
+
+		.trading-view-widget {
+			height: 400px;
+			margin-top: 0;
+		}
+	}
 }
