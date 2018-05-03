@@ -10,8 +10,6 @@ import web.core.Controller;
 import web.core.Message;
 import web.core.View;
 import web.html.Form;
-import web.html.Input;
-import web.html.RadioSelect;
 import web.html.Select;
 
 public class Order extends Controller {
@@ -26,7 +24,6 @@ public class Order extends Controller {
 
 		View view = new View("order")
 			.add("brokerForm", getBrokerForm())
-			.add("orderForm", getOrderForm())
 			.add("currencies", currencies);
 
 		page.setTitle(t.t("buy.sell.order"));
@@ -41,36 +38,11 @@ public class Order extends Controller {
 		brokerSlt.addOption("binance", "Binance");
 		brokerSlt.addOption("poloniex", "Poloniex");
 		brokerSlt.addOption("kraken", "Kraken");
-		brokerSlt.addOption("bitbank", "Bitbank");
-		brokerSlt.addOption("bitz", "Bit-Z");
+		brokerSlt.addOption("bitfinex", "Bitfinex");
+		brokerSlt.addOption("gdax", "GDax");
 
 		Form form = new Form();
 		form.insert(brokerSlt.toString());
-
-		return form;
-	}
-
-	private Form getOrderForm() {
-		RadioSelect orderType = new RadioSelect("orderType");
-		orderType.addInput("buy", t.t("order.buy"));
-		orderType.addInput("sell", t.t("order.sell"));
-
-		RadioSelect priceType = new RadioSelect("priceType");
-		priceType.addInput("market", "Market");
-		priceType.addInput("sell", "Ordre");
-
-		Input price = new Input("text", "price", t.t("price"));
-		Input quantity = new Input("text", "quantity", t.t("quantity"));
-		Input btcQuantity = new Input("text", "btcQuantity", t.t("quantity") + " (BTC)");
-		btcQuantity.addAttr("disabled");
-
-		Form form = new Form();
-		form.addAttr("class", "order-form");
-		form.insert(orderType.toString(), "p");
-		form.insert(priceType.toString(), "p");
-		form.insert(price.toString(), "p");
-		form.insert(quantity.toString(), "p");
-		form.insert(btcQuantity.toString(), "p");
 
 		return form;
 	}

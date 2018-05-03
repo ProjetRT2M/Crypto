@@ -35,7 +35,46 @@
 				</script>
 			</div>
 
-			{{ orderForm | raw }}
+			<form class="order-form hidden">
+				<p>
+					<input type="radio" name="orderType" id="orderType-buy" value="buy">
+					<label for="orderType-buy">Achat</label>
+
+					<input type="radio" name="orderType" id="orderType-sell" value="sell">
+					<label for="orderType-sell">Vente</label>
+				</p>
+
+				<p>
+					<input type="radio" name="priceType" id="priceType-market" value="market">
+					<label for="priceType-market">Market</label>
+
+					<input type="radio" name="priceType" id="priceType-order" value="order">
+					<label for="priceType-order">Ordre</label>
+				</p>
+
+				<p>
+					<label class="left-label" for="price">Prix</label>
+					<input type="text" name="price" id="price" placeholder="Prix" title="Prix">
+				</p>
+
+				<p>
+					<label class="left-label" for="quantity">Quantité</label>
+					<input type="text" name="quantity" id="quantity" placeholder="Quantité" title="Quantité">
+				</p>
+
+				<p>
+					<label class="left-label" for="btcQuantity">Quantité (BTC)</label>
+					<input type="text" name="btcQuantity" id="btcQuantity" placeholder="Quantité (BTC)" title="Quantité (BTC)" disabled>
+				</p>
+
+				<p>
+					<input type="button" value="Acheter" id="buy-button">
+					<input type="button" value="Programmer" id="program-button">
+				</p>
+
+				<div class="loading-gif"></div>
+				<p class="order-message"></p>
+			</form>
 		</div>
 
 		<span class="clear-float"></span>
