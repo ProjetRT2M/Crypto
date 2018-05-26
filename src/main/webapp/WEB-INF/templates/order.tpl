@@ -1,3 +1,7 @@
+{% extends "core/body" %}
+{% block title %} {{ t.t("menu.order") }} {% endblock %}
+
+{% block content %}
 <section class="order-page">
 	<h2>{{ t.t("buy.sell.order") }}</h2>
 	<article>
@@ -80,5 +84,5 @@
 		<span class="clear-float"></span>
 	</article>
 </section>
-
 <script type="text/javascript" src="{{ u.uri("/public/js/order.js") }}"></script>
+{% endblock %}

@@ -1,6 +1,6 @@
-package crypto.controller;
+package app.controller;
 
-import crypto.entity.User;
+import app.entity.User;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,16 +32,15 @@ public class Settings extends Controller {
 			}
 		}
 
-		View view = new View("settings")
-			.add("settingsForm", getSettingsForm(user))
-			.add("passwordForm", getPasswordForm());
+		View view = new View("settings");
+		view.set("settingsForm", getSettingsForm(user));
+		view.set("passwordForm", getPasswordForm());
 
 		if (app.access("admin")) {
-			view.add("accountForm", getAccountForm());
+			view.set("accountForm", getAccountForm());
 		}
 
-		page.setTitle(t.t("menu.settings"));
-		page.setView(view);
+		page.setResponse(view);
 	}
 
 	private Form getSettingsForm(User user) {

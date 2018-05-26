@@ -1,4 +1,4 @@
-package crypto.entity;
+package app.entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

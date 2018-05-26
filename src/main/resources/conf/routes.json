@@ -1,44 +1,33 @@
 [
 	{
 		"uri": "/",
-		"controller": "Home",
-		"action": "show",
-		"permission": "all",
-		"token": false
+		"controller": "Home@show",
+		"permission": "all"
 	},
 	{
 		"uri": "/help",
-		"controller": "Home",
-		"action": "showHelp",
-		"permission": "all",
-		"token": false
+		"controller": "Home@showHelp",
+		"permission": "all"
 	},
 	{
 		"uri": "/login",
-		"controller": "Authentication",
-		"action": "login",
-		"permission": "guest",
-		"token": false
+		"controller": "Authentication@login",
+		"permission": "guest"
 	},
 	{
 		"uri": "/logout",
-		"controller": "Authentication",
-		"action": "logout",
+		"controller": "Authentication@logout",
 		"permission": "member",
 		"token": true
 	},
 	{
 		"uri": "/settings",
-		"controller": "Settings",
-		"action": "show",
-		"permission": "member",
-		"token": false
+		"controller": "Settings@show",
+		"permission": "member"
 	},
 	{
 		"uri": "/order",
-		"controller": "Order",
-		"action": "show",
-		"permission": "member",
-		"token": false
+		"controller": "Order@show",
+		"permission": "member"
 	}
 ]

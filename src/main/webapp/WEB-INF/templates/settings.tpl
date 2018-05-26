@@ -1,3 +1,7 @@
+{% extends "core/body" %}
+{% block title %} {{ t.t("menu.settings") }} {% endblock %}
+
+{% block content %}
 <section>
 	<h2>{{ t.t("settings.account") }}</h2>
 	<article>
@@ -12,7 +16,7 @@
 	</article>
 </section>
 
-{% if accountForm is not null %}
+{% if u.access("admin") %}
 	<section>
 		<h2>{{ t.t("account.create") }}</h2>
 		<article>
@@ -20,3 +24,4 @@
 		</article>
 	</section>
 {% endif %}
+{% endblock %}

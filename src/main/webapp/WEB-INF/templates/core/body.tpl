@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ title }} - Crypto</title>
+		<title>{% block title %}Crypto{% endblock %} - Crypto</title>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" href="{{ u.uri("/public/css/style.css") }}"/>
@@ -19,6 +19,7 @@
 				{% if u.access("member") %}
 					<li><a href="{{ u.uri("/order") }}">{{ t.t("menu.order") }}</a></li>
 					<li><a href="{{ u.uri("/settings") }}">{{ t.t("menu.settings") }}</a></li>
+					<li><a href="{{ u.uri("/dash") }}">{{ "Dashboard" }}</a></li>
 					<li><a href="{{ u.uri("/logout?tk=") + u.getToken() }}">{{ t.t("menu.logout") }}</a></li>
 				{% else %}
 					<li><a href="{{ u.uri("/login") }}">{{ t.t("menu.login") }}</a></li>
@@ -33,8 +34,7 @@
 		</header>
 
 		<main>
-			{{ messages | raw }}
-			{{ content | raw }}
+			{% block content %}{% endblock %}
 		</main>
 
 		<footer>

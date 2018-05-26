@@ -1,3 +1,7 @@
+{% extends "core/body" %}
+{% block title %} {{ t.t("menu.home") }} {% endblock %}
+
+{% block content %}
 <section>
 	<h2>{{ t.t("menu.home") }}</h2>
 	<article>
@@ -24,5 +28,5 @@
 		</div>
 	</article>
 </section>
-
 <script type="text/javascript" src="{{ u.uri("/public/js/home.js") }}"></script>
+{% endblock %}

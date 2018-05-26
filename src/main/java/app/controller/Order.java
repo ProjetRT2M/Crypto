@@ -1,4 +1,4 @@
-package crypto.controller;
+package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,12 +22,10 @@ public class Order extends Controller {
 			page.addMessage(new Message(Message.WARNING, t.t("currency.list.error")));
 		}
 
-		View view = new View("order")
-			.add("brokerForm", getBrokerForm())
-			.add("currencies", currencies);
-
-		page.setTitle(t.t("buy.sell.order"));
-		page.setView(view);
+		View view = new View("order");
+		view.set("brokerForm", getBrokerForm());
+		view.set("currencies", currencies);
+		page.setResponse(view);
 	}
 
 	private Form getBrokerForm() {

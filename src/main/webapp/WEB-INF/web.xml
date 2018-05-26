@@ -19,19 +19,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<context-param>
-		<param-name>package</param-name>
-		<param-value>crypto</param-value>
-	</context-param>
-	<context-param>
-		<param-name>languages</param-name>
-		<param-value>fr</param-value>
-	</context-param>
-	<context-param>
-		<param-name>defaultLanguage</param-name>
-		<param-value>fr</param-value>
-	</context-param>
-
 	<session-config>
 		<session-timeout>360</session-timeout>
 	</session-config>

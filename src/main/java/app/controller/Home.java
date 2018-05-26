@@ -1,4 +1,4 @@
-package crypto.controller;
+package app.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +27,7 @@ public class Home extends Controller {
 				currencySlt.addOption(jo.getString("Currency"), jo.getString("CurrencyLong"));
 			}
 		} catch (IOException | JSONException e) {
-			page.addMessage(new Message(Message.WARNING, t.t("currency.list.error")));
+			page.addMessage(Message.WARNING, t.t("currency.list.error"));
 		}
 
 		Select conversionSlt = new Select("conversion");
@@ -39,16 +39,13 @@ public class Home extends Controller {
 		Form form = new Form();
 		form.insert(currencySlt.toString() + conversionSlt.toString(), "p");
 
-		View view = new View("home")
-			.add("currencyForm", form);
-
-		page.setTitle(t.t("menu.home"));
-		page.setView(view);
+		View view = new View("home");
+		view.set("currencyForm", form);
+		page.setResponse(view);
 	}
 
 	public void showHelp() {
 		View view = new View("help");
-		page.setTitle(t.t("menu.help"));
-		page.setView(view);
+		page.setResponse(view);
 	}
 }

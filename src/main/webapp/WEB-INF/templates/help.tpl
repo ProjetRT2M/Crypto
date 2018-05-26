@@ -1,3 +1,7 @@
+{% extends "core/body" %}
+{% block title %} {{ t.t("menu.help") }} {% endblock %}
+
+{% block content %}
 <section>
 	<h2>{{ t.t("menu.help") }}</h2>
 	<article>
@@ -20,3 +24,4 @@
 		</p>
 	</article>
 </section>
+{% endblock %}

@@ -1,6 +1,6 @@
-package crypto.controller;
+package app.controller;
 
-import crypto.entity.User;
+import app.entity.User;
 import org.apache.commons.codec.digest.DigestUtils;
 import web.core.Controller;
 import web.core.Message;
@@ -36,11 +36,9 @@ public class Authentication extends Controller {
 		form.insert(passwordIpt.toString(), "p");
 		form.addSubmitButton(t.t("ok"));
 
-		View view = new View("login")
-			.add("form", form);
-
-		page.setTitle(t.t("menu.login"));
-		page.setView(view);
+		View view = new View("login");
+		view.set("form", form);
+		page.setResponse(view);
 	}
 
 	public void logout() {
