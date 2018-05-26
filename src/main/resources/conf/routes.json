@@ -29,5 +29,10 @@
 		"uri": "/order",
 		"controller": "Order@show",
 		"permission": "member"
+	},
+	{
+		"uri": "/dashboard",
+		"controller": "Dashboard@show",
+		"permission": "member"
 	}
 ]

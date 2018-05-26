@@ -18,8 +18,8 @@
 
 				{% if u.access("member") %}
 					<li><a href="{{ u.uri("/order") }}">{{ t.t("menu.order") }}</a></li>
+					<li><a href="{{ u.uri("/dashboard") }}">{{ "Dashboard" }}</a></li>
 					<li><a href="{{ u.uri("/settings") }}">{{ t.t("menu.settings") }}</a></li>
-					<li><a href="{{ u.uri("/dash") }}">{{ "Dashboard" }}</a></li>
 					<li><a href="{{ u.uri("/logout?tk=") + u.getToken() }}">{{ t.t("menu.logout") }}</a></li>
 				{% else %}
 					<li><a href="{{ u.uri("/login") }}">{{ t.t("menu.login") }}</a></li>
@@ -34,6 +34,18 @@
 		</header>
 
 		<main>
+			{% if not messages.isEmpty() %}
+				<section id="page-messages">
+					<article>
+						{% for msg in messages %}
+							<p class="{{ msg.type }}">{{ msg.content }}</p>
+						{% endfor %}
+
+						{{ messages.clear() }}
+					</article>
+				</section>
+			{% endif %}
+
 			{% block content %}{% endblock %}
 		</main>
 

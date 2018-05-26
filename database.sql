@@ -13,3 +13,13 @@ CREATE TABLE `User`(
 ) ENGINE=InnoDB;
 
 INSERT INTO User VALUES(null, 'admin', 'f603c40ced1068285660fb5a7c8137275a1c2613ffe7628d11b8c6274ea61f8a', 'member,modo,admin', NOW(), 'localhost', null, null, null);
+
+CREATE TABLE `Order`(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	userId INT UNSIGNED,
+	currency VARCHAR(64) NOT NULL,
+	currencyLong VARCHAR(64) NOT NULL,
+	percentage FLOAT NOT NULL,
+	status VARCHAR(64) NOT NULL,
+	FOREIGN KEY(userId) REFERENCES `User`(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
