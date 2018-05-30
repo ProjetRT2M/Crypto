@@ -12,37 +12,37 @@ import web.util.NotFoundException;
 import web.util.Util;
 
 public class Authentication extends Controller {
-	public void login() {
-		if (req.isPost() && req.get("formId").equals("loginForm")) {
-			try {
-				User user = new SelectQuery<>(User.class)
-					.addCondition("login", "=", req.get("login"))
-					.addCondition("password", "=", DigestUtils.sha256Hex(req.get("password")))
-					.get();
+    public void login() {
+        if (req.isPost() && req.get("formId").equals("loginForm")) {
+            try {
+                User user = new SelectQuery<>(User.class)
+                    .addCondition("login", "=", req.get("login"))
+                    .addCondition("password", "=", DigestUtils.sha256Hex(req.get("password")))
+                    .get();
 
-				app.setUser(user.getId(), user.getPermissions());
-				page.setRedirection(Util.uri("/"));
-				return;
-			} catch (NotFoundException e) {
-				page.addMessage(Message.WARNING, t.t("login.incorrect"));
-			}
-		}
+                app.setUser(user.getId(), user.getPermissions());
+                page.setRedirection(Util.uri("/"));
+                return;
+            } catch (NotFoundException e) {
+                page.addMessage(Message.WARNING, t.t("login.incorrect"));
+            }
+        }
 
-		Input loginIpt = new Input("text", "login", t.t("login"));
-		Input passwordIpt = new Input("password", "password", t.t("password"));
+        Input loginIpt = new Input("text", "login", t.t("login"));
+        Input passwordIpt = new Input("password", "password", t.t("password"));
 
-		Form form = new Form("post", "", "loginForm");
-		form.insert(loginIpt.toString(), "p");
-		form.insert(passwordIpt.toString(), "p");
-		form.addSubmitButton(t.t("ok"));
+        Form form = new Form("post", "", "loginForm");
+        form.insert(loginIpt.toString(), "p");
+        form.insert(passwordIpt.toString(), "p");
+        form.addSubmitButton(t.t("ok"));
 
-		View view = new View("login");
-		view.set("form", form);
-		page.setResponse(view);
-	}
+        View view = new View("login");
+        view.set("form", form);
+        page.setResponse(view);
+    }
 
-	public void logout() {
-		app.getSession().destroy();
-		page.setRedirection(Util.uri("/login"));
-	}
+    public void logout() {
+        app.getSession().destroy();
+        page.setRedirection(Util.uri("/login"));
+    }
 }
