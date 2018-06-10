@@ -13,35 +13,35 @@ import web.html.Form;
 import web.html.Select;
 
 public class Order extends Controller {
-    public void show() {
-        JSONArray currencies = null;
-        try {
-            String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
-            currencies = new JSONObject(response).getJSONArray("result");
-        } catch (IOException | JSONException e) {
-            page.addMessage(new Message(Message.WARNING, t.t("currency.list.error")));
-        }
-
-        View view = new View("order");
-        view.set("brokerForm", getBrokerForm());
-        view.set("currencies", currencies);
-        page.setResponse(view);
+  public void show() {
+    JSONArray currencies = null;
+    try {
+      String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
+      currencies = new JSONObject(response).getJSONArray("result");
+    } catch (IOException | JSONException e) {
+      page.addMessage(new Message(Message.WARNING, t.t("currency.list.error")));
     }
 
-    private Form getBrokerForm() {
-        Select brokerSlt = new Select("broker", t.t("broker"));
-        brokerSlt.addAttr("class", "js-select2 w100");
-        brokerSlt.setDefaultValue("bittrex");
-        brokerSlt.addOption("bittrex", "Bittrex");
-        brokerSlt.addOption("binance", "Binance");
-        brokerSlt.addOption("poloniex", "Poloniex");
-        brokerSlt.addOption("kraken", "Kraken");
-        brokerSlt.addOption("bitfinex", "Bitfinex");
-        brokerSlt.addOption("gdax", "GDax");
+    View view = new View("order");
+    view.set("brokerForm", getBrokerForm());
+    view.set("currencies", currencies);
+    page.setResponse(view);
+  }
 
-        Form form = new Form();
-        form.insert(brokerSlt.toString());
+  private Form getBrokerForm() {
+    Select brokerSlt = new Select("broker", t.t("broker"));
+    brokerSlt.addAttr("class", "js-select2 w100");
+    brokerSlt.setDefaultValue("bittrex");
+    brokerSlt.addOption("bittrex", "Bittrex");
+    brokerSlt.addOption("binance", "Binance");
+    brokerSlt.addOption("poloniex", "Poloniex");
+    brokerSlt.addOption("kraken", "Kraken");
+    brokerSlt.addOption("bitfinex", "Bitfinex");
+    brokerSlt.addOption("gdax", "GDax");
 
-        return form;
-    }
+    Form form = new Form();
+    form.insert(brokerSlt.toString());
+
+    return form;
+  }
 }

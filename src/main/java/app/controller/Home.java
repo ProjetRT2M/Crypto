@@ -13,39 +13,39 @@ import web.html.Form;
 import web.html.Select;
 
 public class Home extends Controller {
-    public void show() {
-        Select currencySlt = new Select("currency", t.t("currency"));
-        currencySlt.addAttr("class", "js-select2 w40");
-        currencySlt.setDefaultValue("BTC");
+  public void show() {
+    Select currencySlt = new Select("currency", t.t("currency"));
+    currencySlt.addAttr("class", "js-select2 w40");
+    currencySlt.setDefaultValue("BTC");
 
-        try {
-            String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
-            JSONArray currencies = new JSONObject(response).getJSONArray("result");
+    try {
+      String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
+      JSONArray currencies = new JSONObject(response).getJSONArray("result");
 
-            for (int i = 0; i < currencies.length(); i++) {
-                JSONObject jo = currencies.getJSONObject(i);
-                currencySlt.addOption(jo.getString("Currency"), jo.getString("CurrencyLong"));
-            }
-        } catch (IOException | JSONException e) {
-            page.addMessage(Message.WARNING, t.t("currency.list.error"));
-        }
-
-        Select conversionSlt = new Select("conversion");
-        conversionSlt.addAttr("class", "js-select2 w40");
-        conversionSlt.setDefaultValue("USD");
-        conversionSlt.addOption("USD", "Dollar");
-        conversionSlt.addOption("BTC", "Bitcoin");
-
-        Form form = new Form();
-        form.insert(currencySlt.toString() + conversionSlt.toString(), "p");
-
-        View view = new View("home");
-        view.set("currencyForm", form);
-        page.setResponse(view);
+      for (int i = 0; i < currencies.length(); i++) {
+        JSONObject jo = currencies.getJSONObject(i);
+        currencySlt.addOption(jo.getString("Currency"), jo.getString("CurrencyLong"));
+      }
+    } catch (IOException | JSONException e) {
+      page.addMessage(Message.WARNING, t.t("currency.list.error"));
     }
 
-    public void showHelp() {
-        View view = new View("help");
-        page.setResponse(view);
-    }
+    Select conversionSlt = new Select("conversion");
+    conversionSlt.addAttr("class", "js-select2 w40");
+    conversionSlt.setDefaultValue("USD");
+    conversionSlt.addOption("USD", "Dollar");
+    conversionSlt.addOption("BTC", "Bitcoin");
+
+    Form form = new Form();
+    form.insert(currencySlt.toString() + conversionSlt.toString(), "p");
+
+    View view = new View("home");
+    view.set("currencyForm", form);
+    page.setResponse(view);
+  }
+
+  public void showHelp() {
+    View view = new View("help");
+    page.setResponse(view);
+  }
 }
