@@ -66,9 +66,9 @@ public class Settings extends Controller {
       user.setApiKey(req.get("apiKey"));
       user.setApiSecret(req.get("apiKey"));
       user.save();
-      page.addMessage(Message.SUCCESS, t.t("settings.saved"));
+      page.addMessage(Message.Type.SUCCESS, t.t("settings.saved"));
     } catch (EntityException e) {
-      page.addMessage(Message.WARNING, e.getMessage());
+      page.addMessage(Message.Type.WARNING, e.getMessage());
     }
   }
 
@@ -92,16 +92,16 @@ public class Settings extends Controller {
     String oldPassword = DigestUtils.sha256Hex(req.get("oldPassword"));
 
     if (!newPassword.equals(newPasswordConfirm)) {
-      page.addMessage(Message.WARNING, t.t("password.different"));
+      page.addMessage(Message.Type.WARNING, t.t("password.different"));
     } else if (!oldPassword.equals(user.getPassword())) {
-      page.addMessage(Message.WARNING, t.t("password.old.incorrect"));
+      page.addMessage(Message.Type.WARNING, t.t("password.old.incorrect"));
     } else {
       try {
         user.setPassword(newPassword);
         user.save();
-        page.addMessage(Message.SUCCESS, t.t("password.saved"));
+        page.addMessage(Message.Type.SUCCESS, t.t("password.saved"));
       } catch (EntityException e) {
-        page.addMessage(Message.WARNING, e.getMessage());
+        page.addMessage(Message.Type.WARNING, e.getMessage());
       }
     }
   }
@@ -136,9 +136,9 @@ public class Settings extends Controller {
       permissions.add("member");
       user.setPermissions(permissions);
       user.save();
-      page.addMessage(Message.SUCCESS, t.t("account.saved"));
+      page.addMessage(Message.Type.SUCCESS, t.t("account.saved"));
     } catch (EntityException e) {
-      page.addMessage(Message.WARNING, e.getMessage());
+      page.addMessage(Message.Type.WARNING, e.getMessage());
     }
   }
 }

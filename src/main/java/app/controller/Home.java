@@ -27,7 +27,7 @@ public class Home extends Controller {
         currencySlt.addOption(jo.getString("Currency"), jo.getString("CurrencyLong"));
       }
     } catch (IOException | JSONException e) {
-      page.addMessage(Message.WARNING, t.t("currency.list.error"));
+      page.addMessage(Message.Type.WARNING, t.t("currency.list.error"));
     }
 
     Select conversionSlt = new Select("conversion");

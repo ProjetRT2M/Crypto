@@ -26,9 +26,9 @@ public class Dashboard extends Controller {
         o.setCurrencyLong(currency[1]);
         o.setPercentage(req.get("percentage"));
         o.save();
-        page.addMessage(Message.SUCCESS, "Ordre enregistré");
+        page.addMessage(Message.Type.SUCCESS, "Ordre enregistré");
       } catch (EntityException e) {
-        page.addMessage(Message.WARNING, e.getMessage());
+        page.addMessage(Message.Type.WARNING, e.getMessage());
       }
     }
 
@@ -38,7 +38,7 @@ public class Dashboard extends Controller {
       String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
       currencies = new JSONObject(response).getJSONArray("result");
     } catch (IOException | JSONException e) {
-      page.addMessage(Message.WARNING, t.t("currency.list.error"));
+      page.addMessage(Message.Type.WARNING, t.t("currency.list.error"));
     }
 
     ArrayList<Order> orders = new SelectQuery<>(app.entity.Order.class)

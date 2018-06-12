@@ -19,7 +19,7 @@ public class Order extends Controller {
       String response = IOUtils.toString(new URL("https://bittrex.com/api/v1.1/public/getcurrencies"), "UTF-8");
       currencies = new JSONObject(response).getJSONArray("result");
     } catch (IOException | JSONException e) {
-      page.addMessage(new Message(Message.WARNING, t.t("currency.list.error")));
+      page.addMessage(new Message(Message.Type.WARNING, t.t("currency.list.error")));
     }
 
     View view = new View("order");

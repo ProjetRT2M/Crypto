@@ -25,7 +25,7 @@ public class Authentication extends Controller {
         page.setRedirection(Util.uri("/"));
         return;
       } catch (NotFoundException e) {
-        page.addMessage(Message.WARNING, t.t("login.incorrect"));
+        page.addMessage(Message.Type.WARNING, t.t("login.incorrect"));
       }
     }
 
