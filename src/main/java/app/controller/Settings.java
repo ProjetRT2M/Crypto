@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
+import web.core.Action;
 import web.core.Controller;
 import web.core.Message;
 import web.core.View;
@@ -14,6 +15,7 @@ import web.html.Input;
 import web.util.EntityException;
 
 public class Settings extends Controller {
+  @Action(uri = "/settings", permission = "member")
   public void show() {
     User user = new User();
     user.fetch(appUser.getId());

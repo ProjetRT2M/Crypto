@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import web.core.Action;
 import web.core.Controller;
 import web.core.Message;
 import web.core.View;
@@ -13,6 +14,7 @@ import web.html.Form;
 import web.html.Select;
 
 public class Home extends Controller {
+  @Action(uri = "/", permission = "all")
   public void show() {
     Select currencySlt = new Select("currency", t.t("currency"));
     currencySlt.addAttr("class", "js-select2 w40");
@@ -44,6 +46,7 @@ public class Home extends Controller {
     page.setResponse(view);
   }
 
+  @Action(uri = "/help", permission = "all")
   public void showHelp() {
     View view = new View("help");
     page.setResponse(view);

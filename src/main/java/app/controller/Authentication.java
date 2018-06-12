@@ -2,6 +2,7 @@ package app.controller;
 
 import app.entity.User;
 import org.apache.commons.codec.digest.DigestUtils;
+import web.core.Action;
 import web.core.Controller;
 import web.core.Message;
 import web.core.View;
@@ -12,6 +13,7 @@ import web.util.NotFoundException;
 import web.util.Util;
 
 public class Authentication extends Controller {
+  @Action(uri = "/login", permission = "guest")
   public void login() {
     if (req.isPost() && req.get("formId").equals("loginForm")) {
       try {
@@ -42,6 +44,7 @@ public class Authentication extends Controller {
     page.setResponse(view);
   }
 
+  @Action(uri = "/logout", permission = "member", token = true)
   public void logout() {
     app.getSession().destroy();
     page.setRedirection(Util.uri("/login"));
